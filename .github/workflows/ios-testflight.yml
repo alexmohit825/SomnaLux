@@ -18,17 +18,16 @@ jobs:
       - name: Select Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode_15.4.app/Contents/Developer
 
-      - name: Cache CocoaPods / SPM Dependencies
-        uses: actions/cache@v3
-        with:
-          path: .build
-          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-spm-
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode Project
+        run: xcodegen generate
 
       - name: Build for iOS Simulator (iPhone 15 Pro)
         run: |
           xcodebuild build \
+            -project SomnaLux.xcodeproj \
             -scheme SomnaLux \
             -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
             CODE_SIGNING_ALLOWED=NO
@@ -45,6 +44,12 @@ jobs:
       - name: Select Xcode Version
         run: sudo xcode-select -switch /Applications/Xcode_15.4.app/Contents/Developer
 
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode Project
+        run: xcodegen generate
+
       - name: Install Apple App Store Connect API Key
         env:
           APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
@@ -57,11 +62,13 @@ jobs:
       - name: Build & Archive Release IPA
         run: |
           xcodebuild archive \
+            -project SomnaLux.xcodeproj \
             -scheme SomnaLux \
             -archivePath build/SomnaLux.xcarchive \
-            -destination 'generic/platform=iOS'
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO
 
-      - name: Upload to TestFlight via altool / notarytool
+      - name: Upload to TestFlight via altool
         env:
           KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
