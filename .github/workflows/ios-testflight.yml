@@ -7,6 +7,9 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_16.0.app/Contents/Developer
+
 jobs:
   build-and-test:
     name: Build iOS Simulator & Run Tests
@@ -15,8 +18,8 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Select Latest Xcode
-        run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+      - name: Select Xcode 16
+        run: sudo xcode-select -switch /Applications/Xcode_16.0.app/Contents/Developer
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -24,7 +27,7 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
-      - name: Build for iOS Simulator (iPhone 15 Pro)
+      - name: Build for iOS Simulator
         run: |
           xcodebuild build \
             -project SomnaLux.xcodeproj \
@@ -41,8 +44,8 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Select Latest Xcode
-        run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+      - name: Select Xcode 16
+        run: sudo xcode-select -switch /Applications/Xcode_16.0.app/Contents/Developer
 
       - name: Install XcodeGen
         run: brew install xcodegen
