@@ -1,0 +1,73 @@
+name: iOS Build & TestFlight Deployment
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    name: Build iOS Simulator & Run Tests
+    runs-on: macos-14
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app/Contents/Developer
+
+      - name: Cache CocoaPods / SPM Dependencies
+        uses: actions/cache@v3
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+
+      - name: Build for iOS Simulator (iPhone 15 Pro)
+        run: |
+          xcodebuild build \
+            -scheme SomnaLux \
+            -destination 'platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5' \
+            CODE_SIGNING_ALLOWED=NO
+
+  deploy-testflight:
+    name: Archive & Upload to Apple TestFlight
+    needs: build-and-test
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    runs-on: macos-14
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode Version
+        run: sudo xcode-select -switch /Applications/Xcode_15.4.app/Contents/Developer
+
+      - name: Install Apple App Store Connect API Key
+        env:
+          APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+          KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        run: |
+          mkdir -p ~/.appstoreconnect/private_keys
+          echo "$APP_STORE_CONNECT_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8
+
+      - name: Build & Archive Release IPA
+        run: |
+          xcodebuild archive \
+            -scheme SomnaLux \
+            -archivePath build/SomnaLux.xcarchive \
+            -destination 'generic/platform=iOS'
+
+      - name: Upload to TestFlight via altool / notarytool
+        env:
+          KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        run: |
+          xcrun altool --upload-app \
+            -f build/SomnaLux.xcarchive \
+            -t ios \
+            --apiKey "$KEY_ID" \
+            --apiIssuer "$ISSUER_ID"
