@@ -74,17 +74,16 @@ public struct SomnaLuxWidgetEntryView : View {
     }
 }
 
-@main
-struct SomnaLuxWidgetBundle: WidgetBundle {
-    var body: some Widget {
+public struct SomnaLuxWidgetBundle: WidgetBundle {
+    public var body: some Widget {
         SomnaLuxScoreWidget()
     }
 }
 
-struct SomnaLuxScoreWidget: Widget {
+public struct SomnaLuxScoreWidget: Widget {
     let kind: String = "SomnaLuxScoreWidget"
 
-    var body: some WidgetConfiguration {
+    public var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: SleepTimelineProvider()) { entry in
             SomnaLuxWidgetEntryView(entry: entry)
                 .containerBackground(Color(red: 0.05, green: 0.07, blue: 0.12), for: .widget)
@@ -95,16 +94,16 @@ struct SomnaLuxScoreWidget: Widget {
     }
 }
 
-struct SleepTimelineProvider: TimelineProvider {
-    func placeholder(in context: Context) -> SleepScoreEntry {
+public struct SleepTimelineProvider: TimelineProvider {
+    public func placeholder(in context: Context) -> SleepScoreEntry {
         SleepScoreEntry(date: Date(), sleepScore: 88, deepPercentage: 22, hrvAverage: 54, biologicalAgeDelta: -2.1)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SleepScoreEntry) -> ()) {
+    public func getSnapshot(in context: Context, completion: @escaping (SleepScoreEntry) -> ()) {
         completion(SleepScoreEntry(date: Date(), sleepScore: 88, deepPercentage: 22, hrvAverage: 54, biologicalAgeDelta: -2.1))
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<SleepScoreEntry>) -> ()) {
+    public func getTimeline(in context: Context, completion: @escaping (Timeline<SleepScoreEntry>) -> ()) {
         let entry = SleepScoreEntry(date: Date(), sleepScore: 86, deepPercentage: 20, hrvAverage: 52, biologicalAgeDelta: -1.8)
         let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
         let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
