@@ -7,6 +7,9 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-and-test:
     name: Build iOS Simulator & Run Tests
@@ -14,6 +17,8 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -25,8 +30,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add SomnaLux.xcodeproj
-          if git commit -m "chore: add SomnaLux.xcodeproj for Apple Xcode Cloud"; then
+          git add -f SomnaLux.xcodeproj
+          if git commit -m "chore: add SomnaLux.xcodeproj at root for Apple Xcode Cloud"; then
             git push origin main
           fi
 
