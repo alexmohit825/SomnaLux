@@ -7,19 +7,13 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
-env:
-  DEVELOPER_DIR: /Applications/Xcode_16.0.app/Contents/Developer
-
 jobs:
   build-and-test:
     name: Build iOS Simulator & Run Tests
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-
-      - name: Select Xcode 16
-        run: sudo xcode-select -switch /Applications/Xcode_16.0.app/Contents/Developer
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -39,13 +33,10 @@ jobs:
     name: Archive & Upload to Apple TestFlight
     needs: build-and-test
     if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
-
-      - name: Select Xcode 16
-        run: sudo xcode-select -switch /Applications/Xcode_16.0.app/Contents/Developer
 
       - name: Install XcodeGen
         run: brew install xcodegen
