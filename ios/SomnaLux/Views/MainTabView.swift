@@ -67,9 +67,18 @@ public struct MainTabView: View {
                     
                     // Onboarding Tour Trigger
                     Button(action: { showOnboarding = true }) {
-                        Image(systemName: "questionmark.circle")
-                            .font(.system(size: 16))
-                            .foregroundColor(SomnaTheme.circadianIndigo)
+                        HStack(spacing: 4) {
+                            Image(systemName: "lightbulb.fill")
+                                .font(.system(size: 11))
+                            Text("Guide")
+                                .font(.system(size: 11, weight: .bold))
+                        }
+                        .foregroundColor(SomnaTheme.warningAmber)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 5)
+                        .background(SomnaTheme.warningAmber.opacity(0.15))
+                        .cornerRadius(10)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(SomnaTheme.warningAmber.opacity(0.3), lineWidth: 1))
                     }
                     
                     // Score Badge

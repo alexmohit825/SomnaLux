@@ -1,7 +1,7 @@
 //
 //  SleepDashboardView.swift
 //  SomnaLux
-//  Section-Numbered Polysomnography & Predictive Longevity Dashboard
+//  Section-Numbered Polysomnography & Predictive Longevity Dashboard with In-App Orientation & Section Guides
 //
 
 import SwiftUI
@@ -10,6 +10,9 @@ public struct SleepDashboardView: View {
     @Binding public var currentRecord: SleepRecord
     @Binding public var selectedArchetypeKey: String
     @Binding public var selectedTab: Int
+    
+    // First-Time User In-App Guide Toggle
+    @State private var showOrientationGuide: Bool = true
     
     // Interactive What-If Modeler State
     @State private var simExtraDeep: Double = 0
@@ -55,7 +58,58 @@ public struct SleepDashboardView: View {
     
     public var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 28) {
+            VStack(spacing: 24) {
+                
+                // =========================================================
+                // TOP: FIRST-TIME USER ORIENTATION & GUIDE CARD
+                // =========================================================
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        HStack(spacing: 6) {
+                            Image(systemName: "lightbulb.fill")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(SomnaTheme.warningAmber)
+                            Text("FIRST-TIME USER GUIDE")
+                                .font(.system(size: 9, weight: .heavy, design: .monospaced))
+                                .foregroundColor(SomnaTheme.warningAmber)
+                        }
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(SomnaTheme.warningAmber.opacity(0.15))
+                        .cornerRadius(8)
+                        
+                        Spacer()
+                        
+                        Button(action: { withAnimation { showOrientationGuide.toggle() } }) {
+                            HStack(spacing: 4) {
+                                Text(showOrientationGuide ? "Hide Guide" : "Show Guide")
+                                    .font(.system(size: 11, weight: .bold))
+                                Image(systemName: showOrientationGuide ? "chevron.up" : "chevron.down")
+                                    .font(.system(size: 10))
+                            }
+                            .foregroundColor(SomnaTheme.circadianIndigo)
+                        }
+                    }
+                    
+                    if showOrientationGuide {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("How to Read & Use Your Sleep Optimization Dashboard")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                            VStack(spacing: 8) {
+                                OrientationStepRow(num: "1", title: "Test Scenarios (Section 01)", desc: "Tap any scenario below to see how stress, insomnia, or optimal habits alter your cellular score.")
+                                OrientationStepRow(num: "2", title: "Target SWS Detox (Section 02)", desc: "Check your 90-min Slow-Wave Sleep reservoir. Hitting 20%+ reduces biological aging.")
+                                OrientationStepRow(num: "3", title: "Simulate 'What-If' (Section 03)", desc: "Slide the levers to simulate how adding +20m of deep sleep directly boosts longevity.")
+                                OrientationStepRow(num: "4", title: "Follow 3 Bedtime Steps (Section 04)", desc: "Apply the prescribed vagal breath and 66°F room microclimate before sleeping tonight.")
+                            }
+                        }
+                        .padding(.top, 4)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
+                }
+                .padding(16)
+                .luxuryCard(borderColor: SomnaTheme.warningAmber.opacity(0.35))
                 
                 // =========================================================
                 // SECTION 01: CLINICAL SCENARIO SIMULATOR
@@ -71,10 +125,16 @@ public struct SleepDashboardView: View {
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
-                        Text("CLINICAL SLEEP PROFILES")
-                            .font(.system(size: 11, weight: .bold))
+                        Text("CLINICAL SCENARIO TESTER")
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                     }
+                    
+                    // Explainer Note
+                    Text("💡 What this does: Tap a profile below to explore how different real-world conditions affect your sleep score, or sync your Apple Watch data directly under Tab 06.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
@@ -113,7 +173,7 @@ public struct SleepDashboardView: View {
                                             }
                                         }
                                         .padding(14)
-                                        .frame(width: 140)
+                                        .frame(width: 145)
                                         .background(isSelected ? SomnaTheme.cardBackground : SomnaTheme.cardBackground.opacity(0.5))
                                         .cornerRadius(18)
                                         .overlay(
@@ -141,10 +201,15 @@ public struct SleepDashboardView: View {
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
-                        Text("RESTORATIVE ARCHITECTURE")
-                            .font(.system(size: 11, weight: .bold))
+                        Text("RESTORATIVE ARCHITECTURE & SCORE")
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                     }
+                    
+                    Text("💡 What this means: Your Restorative Score (0-100) measures how much cellular rejuvenation occurred. Slow-Wave Sleep (SWS) flushes brain toxins and releases 95% of growth hormone.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     // Main Score & SWS Reservoir Card
                     VStack(spacing: 20) {
@@ -229,7 +294,7 @@ public struct SleepDashboardView: View {
                                     .font(.system(size: 12, weight: .bold))
                                     .foregroundColor(.white)
                                 Spacer()
-                                Text(deepPercentage >= 20 ? "✓ Optimal Flush" : "⚠️ Deficit")
+                                Text(deepPercentage >= 20 ? "✓ 90m Goal Met" : "⚠️ \(max(0, 90 - effectiveDeep))m Deficit")
                                     .font(.system(size: 10, weight: .bold))
                                     .foregroundColor(deepPercentage >= 20 ? SomnaTheme.primaryTeal : SomnaTheme.warningAmber)
                             }
@@ -253,10 +318,10 @@ public struct SleepDashboardView: View {
                             
                             // 4 Stages Proportional Grid
                             HStack(spacing: 6) {
-                                StageMiniBox(title: "Deep SWS", val: "\(effectiveDeep)m", color: SomnaTheme.primaryTeal)
-                                StageMiniBox(title: "REM Dream", val: "\(currentRecord.remMinutes)m", color: SomnaTheme.remLavender)
-                                StageMiniBox(title: "Light", val: "\(currentRecord.lightMinutes)m", color: SomnaTheme.circadianIndigo)
-                                StageMiniBox(title: "WASO", val: "\(currentRecord.awakeMinutes)m", color: SomnaTheme.warningAmber)
+                                StageMiniBox(title: "Deep SWS (Detox)", val: "\(effectiveDeep)m", color: SomnaTheme.primaryTeal)
+                                StageMiniBox(title: "REM (Dreams)", val: "\(currentRecord.remMinutes)m", color: SomnaTheme.remLavender)
+                                StageMiniBox(title: "Light (Spindles)", val: "\(currentRecord.lightMinutes)m", color: SomnaTheme.circadianIndigo)
+                                StageMiniBox(title: "Awake (WASO)", val: "\(currentRecord.awakeMinutes)m", color: SomnaTheme.warningAmber)
                             }
                             .padding(.top, 4)
                         }
@@ -280,7 +345,7 @@ public struct SleepDashboardView: View {
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
                         Text("INTERACTIVE 'WHAT-IF' MODELER")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -293,6 +358,11 @@ public struct SleepDashboardView: View {
                             .foregroundColor(SomnaTheme.primaryTeal)
                         }
                     }
+                    
+                    Text("💡 What this does: Drag the sliders to test how gaining more deep sleep or improving your HRV would instantly raise your score and reverse biological aging.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     VStack(spacing: 16) {
                         // Slider 1: SWS Deep Sleep
@@ -343,10 +413,15 @@ public struct SleepDashboardView: View {
                             .cornerRadius(8)
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
-                        Text("AI PATHOLOGY & ROOT CAUSES")
-                            .font(.system(size: 11, weight: .bold))
+                        Text("AI DIAGNOSIS & 3-STEP PRESCRIPTION")
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                     }
+                    
+                    Text("💡 What this is: Clinical root-cause findings and 3 immediate behavioral actions to execute tonight before bed.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
@@ -366,9 +441,9 @@ public struct SleepDashboardView: View {
                         
                         // 3-Step Prescriptions
                         VStack(spacing: 8) {
-                            PrescriptionRow(step: "1", title: "4-7-8 Parasympathetic Vagal Reset", desc: "6 cycles before bed to stimulate acetylcholine release.")
+                            PrescriptionRow(step: "1", title: "4-7-8 Parasympathetic Vagal Reset", desc: "6 cycles before bed (Tab 05) to stimulate acetylcholine release.")
                             PrescriptionRow(step: "2", title: "Bedroom Thermal Microclimate (66°F)", desc: "Trigger peripheral vasodilation 45 mins before sleep.")
-                            PrescriptionRow(step: "3", title: "Circadian Lux Anchoring", desc: "10,000+ lux sunlight within 30 minutes of waking.")
+                            PrescriptionRow(step: "3", title: "Circadian Lux Anchoring", desc: "10,000+ lux morning sunlight within 30 minutes of waking.")
                         }
                     }
                     .padding(20)
@@ -390,9 +465,14 @@ public struct SleepDashboardView: View {
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
                         Text("POLYSOMNOGRAPHY HYPNOGRAM")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                     }
+                    
+                    Text("💡 What this is: Visual timeline of your 4 sleep stages across the night. Yellow = Awake, Purple = REM Dreams, Blue = Light Sleep, Teal = Deep Slow-Wave Rejuvenation.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     VStack(alignment: .leading, spacing: 14) {
                         HypnogramCanvasView(epochs: currentRecord.stageEpochs, totalMinutes: Double(currentRecord.durationMinutes))
@@ -443,9 +523,14 @@ public struct SleepDashboardView: View {
                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                         
                         Text("AUTONOMIC & SANCTUARY TELEMETRY")
-                            .font(.system(size: 11, weight: .bold))
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                     }
+                    
+                    Text("💡 What these numbers mean: Key biological indicators captured by wearable sensors and bedroom environmental telemetry.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         TelemetryMiniCard(icon: "waveform.path.ecg", title: "Nocturnal HRV", value: "\(effectiveHrv) ms", sub: "Vagal Dominance", color: SomnaTheme.primaryTeal)
@@ -463,6 +548,38 @@ public struct SleepDashboardView: View {
     }
 }
 
+private struct OrientationStepRow: View {
+    let num: String
+    let title: String
+    let desc: String
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            Text(num)
+                .font(.system(size: 10, weight: .bold))
+                .foregroundColor(SomnaTheme.warningAmber)
+                .frame(width: 20, height: 20)
+                .background(SomnaTheme.warningAmber.opacity(0.15))
+                .clipShape(Circle())
+                .padding(.top, 1)
+            
+            VStack(alignment: .leading, spacing: 1) {
+                Text(title)
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(.white)
+                Text(desc)
+                    .font(.system(size: 10))
+                    .foregroundColor(SomnaTheme.textSecondary)
+                    .lineSpacing(2)
+            }
+            Spacer()
+        }
+        .padding(8)
+        .background(SomnaTheme.secondaryCard)
+        .cornerRadius(10)
+    }
+}
+
 private struct StageMiniBox: View {
     let title: String
     let val: String
@@ -473,6 +590,7 @@ private struct StageMiniBox: View {
             Text(title)
                 .font(.system(size: 8, weight: .bold))
                 .foregroundColor(color)
+                .lineLimit(1)
             Text(val)
                 .font(.system(size: 11, weight: .bold))
                 .foregroundColor(.white)
