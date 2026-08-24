@@ -13,11 +13,23 @@ public struct SleepScoreEntry: TimelineEntry {
     public let deepPercentage: Int
     public let hrvAverage: Int
     public let biologicalAgeDelta: Double
+    
+    public init(date: Date, sleepScore: Int, deepPercentage: Int, hrvAverage: Int, biologicalAgeDelta: Double) {
+        self.date = date
+        self.sleepScore = sleepScore
+        self.deepPercentage = deepPercentage
+        self.hrvAverage = hrvAverage
+        self.biologicalAgeDelta = biologicalAgeDelta
+    }
 }
 
 public struct SomnaLuxWidgetEntryView : View {
     public var entry: SleepScoreEntry
     @Environment(\.widgetFamily) var family
+
+    public init(entry: SleepScoreEntry) {
+        self.entry = entry
+    }
 
     public var body: some View {
         switch family {
@@ -75,12 +87,16 @@ public struct SomnaLuxWidgetEntryView : View {
 }
 
 public struct SomnaLuxWidgetBundle: WidgetBundle {
+    public init() {}
+    
     public var body: some Widget {
         SomnaLuxScoreWidget()
     }
 }
 
 public struct SomnaLuxScoreWidget: Widget {
+    public init() {}
+    
     let kind: String = "SomnaLuxScoreWidget"
 
     public var body: some WidgetConfiguration {
@@ -95,6 +111,8 @@ public struct SomnaLuxScoreWidget: Widget {
 }
 
 public struct SleepTimelineProvider: TimelineProvider {
+    public init() {}
+    
     public func placeholder(in context: Context) -> SleepScoreEntry {
         SleepScoreEntry(date: Date(), sleepScore: 88, deepPercentage: 22, hrvAverage: 54, biologicalAgeDelta: -2.1)
     }
