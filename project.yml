@@ -1,11 +1,11 @@
 name: SomnaLux
 options:
-  bundleIdPrefix: com.somnalux
-  xcodeVersion: "15.4"
+  bundleIdPrefix: com.Alex
+  xcodeVersion: "16.0"
   deploymentTarget:
     iOS: "17.0"
 settings:
-  PRODUCT_BUNDLE_IDENTIFIER: com.somnalux.sleep
+  PRODUCT_BUNDLE_IDENTIFIER: com.Alex.SomnaLux
   INFOPLIST_FILE: ios/SomnaLux/Info.plist
   GENERATE_INFOPLIST_FILE: false
   DEVELOPMENT_TEAM: ""
@@ -22,5 +22,5 @@ targets:
       - path: ios/SomnaLux
     settings:
       INFOPLIST_FILE: ios/SomnaLux/Info.plist
-      PRODUCT_BUNDLE_IDENTIFIER: com.somnalux.sleep
+      PRODUCT_BUNDLE_IDENTIFIER: com.Alex.SomnaLux
       CODE_SIGN_ENTITLEMENTS: ios/SomnaLux/SomnaLux.entitlements
