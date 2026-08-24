@@ -53,6 +53,8 @@ jobs:
           echo "$APP_STORE_CONNECT_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8
 
       - name: Build & Archive Release IPA
+        env:
+          RUN_NUM: ${{ github.run_number }}
         run: |
           xcodebuild archive \
             -project SomnaLux.xcodeproj \
@@ -60,6 +62,7 @@ jobs:
             -archivePath build/SomnaLux.xcarchive \
             -destination 'generic/platform=iOS' \
             DEVELOPMENT_TEAM=523MJL63MC \
+            CURRENT_PROJECT_VERSION="$RUN_NUM" \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Cloud Sign & Upload Directly to TestFlight
