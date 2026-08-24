@@ -12,6 +12,8 @@ public struct ScientificMechanismsView: View {
     @State private var vagalStimulus: Double = 75
     @State private var circadianHour: Double = 22 // 10 PM
     
+    public init() {}
+    
     private let pillars = [
         ("glymphatic", "1. Glymphatic Detox", "Aquaporin-4 CSF Waste Flush", "brain.head.profile", SomnaTheme.primaryTeal),
         ("autonomic", "2. Autonomic Vagal", "Parasympathetic BP Dipping", "heart.fill", SomnaTheme.vagalRose),
@@ -30,7 +32,7 @@ public struct ScientificMechanismsView: View {
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.primaryTeal)
                         Text("HARVARD & STANFORD SLEEP MEDICINE FOUNDATIONS")
-                            .font(.system(size: 9, weight: .extrabold, design: .monospaced))
+                            .font(.system(size: 9, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.primaryTeal)
                     }
                     .padding(.horizontal, 10)
@@ -39,7 +41,7 @@ public struct ScientificMechanismsView: View {
                     .cornerRadius(8)
                     
                     Text("Biological Cellular Mechanisms")
-                        .font(.system(size: 20, weight: .extrabold))
+                        .font(.system(size: 20, weight: .heavy))
                         .foregroundColor(.white)
                     
                     Text("Discover the exact molecular and physiological pathways through which slow-wave sleep orchestrates neuro-cleansing, cardiovascular dipping, and cellular longevity.")

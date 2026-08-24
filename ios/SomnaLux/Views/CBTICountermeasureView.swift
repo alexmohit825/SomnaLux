@@ -18,6 +18,10 @@ public struct CBTICountermeasureView: View {
     @State private var task2Done: Bool = false
     @State private var task3Done: Bool = false
     
+    public init(currentRecord: Binding<SleepRecord>) {
+        self._currentRecord = currentRecord
+    }
+    
     private var caffeineRemainingMg: Int {
         let initialMg = cupsOfCoffee * 100.0
         let halfLifeHours = 5.0
@@ -36,7 +40,7 @@ public struct CBTICountermeasureView: View {
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.circadianIndigo)
                         Text("GOLD-STANDARD INSOMNIA PROTOCOLS")
-                            .font(.system(size: 9, weight: .extrabold, design: .monospaced))
+                            .font(.system(size: 9, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.circadianIndigo)
                     }
                     .padding(.horizontal, 10)
@@ -45,7 +49,7 @@ public struct CBTICountermeasureView: View {
                     .cornerRadius(8)
                     
                     Text("CBT-I Digital Therapeutics Clinic")
-                        .font(.system(size: 20, weight: .extrabold))
+                        .font(.system(size: 20, weight: .heavy))
                         .foregroundColor(.white)
                     
                     Text("Evidence-based Cognitive Behavioral Therapy for Insomnia (CBT-I) to extinguish conditioned bedroom arousal and consolidate sleep drive.")

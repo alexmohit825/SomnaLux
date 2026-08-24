@@ -174,7 +174,7 @@ public struct SleepDashboardView: View {
                                 
                                 VStack(spacing: 0) {
                                     Text("\(calculatedScore)")
-                                        .font(.system(size: 32, weight: .extrabold, design: .rounded))
+                                        .font(.system(size: 32, weight: .heavy, design: .rounded))
                                         .foregroundColor(.white)
                                     Text("SCORE")
                                         .font(.system(size: 8, weight: .bold))
@@ -534,7 +534,7 @@ private struct TelemetryMiniCard: View {
             }
             
             Text(value)
-                .font(.system(size: 18, weight: .extrabold, design: .monospaced))
+                .font(.system(size: 18, weight: .heavy, design: .monospaced))
                 .foregroundColor(.white)
             
             Text(sub)

@@ -16,6 +16,8 @@ public struct NeuromodulationStudioView: View {
     @State private var isPacing: Bool = false
     @State private var timer: Timer? = nil
     
+    public init() {}
+    
     public var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 24) {
@@ -27,7 +29,7 @@ public struct NeuromodulationStudioView: View {
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.primaryTeal)
                         Text("OFFLINE LOW-LATENCY AVAudioEngine")
-                            .font(.system(size: 9, weight: .extrabold, design: .monospaced))
+                            .font(.system(size: 9, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.primaryTeal)
                     }
                     .padding(.horizontal, 10)
@@ -36,7 +38,7 @@ public struct NeuromodulationStudioView: View {
                     .cornerRadius(8)
                     
                     Text("Acoustic Neuromodulation Studio")
-                        .font(.system(size: 20, weight: .extrabold))
+                        .font(.system(size: 20, weight: .heavy))
                         .foregroundColor(.white)
                     
                     Text("Hardware-accelerated binaural delta wave synthesis and vagal parasympathetic breath pacing for sleep induction.")

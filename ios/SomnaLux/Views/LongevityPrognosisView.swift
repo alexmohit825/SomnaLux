@@ -10,6 +10,10 @@ public struct LongevityPrognosisView: View {
     @Binding public var currentRecord: SleepRecord
     @State private var projectedYears: Double = 10
     
+    public init(currentRecord: Binding<SleepRecord>) {
+        self._currentRecord = currentRecord
+    }
+    
     private var bioAgeDivergence: Double {
         currentRecord.biologicalAgeShift
     }
@@ -25,7 +29,7 @@ public struct LongevityPrognosisView: View {
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.circadianIndigo)
                         Text("10-YEAR PROGNOSTIC TRAJECTORY")
-                            .font(.system(size: 9, weight: .extrabold, design: .monospaced))
+                            .font(.system(size: 9, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.circadianIndigo)
                     }
                     .padding(.horizontal, 10)
@@ -34,7 +38,7 @@ public struct LongevityPrognosisView: View {
                     .cornerRadius(8)
                     
                     Text("Biological Sleep Age & Longevity Prognosis")
-                        .font(.system(size: 20, weight: .extrabold))
+                        .font(.system(size: 20, weight: .heavy))
                         .foregroundColor(.white)
                     
                     Text("Quantifies how cumulative slow-wave delta deficits or autonomic recovery alter systemic cellular aging, arterial elasticity, and neurocognitive resilience.")
@@ -53,7 +57,7 @@ public struct LongevityPrognosisView: View {
                                 .font(.system(size: 10, weight: .bold))
                                 .foregroundColor(SomnaTheme.textMuted)
                             Text(bioAgeDivergence < 0 ? "\(String(format: "%.1f", bioAgeDivergence)) Years" : "+\(String(format: "%.1f", bioAgeDivergence)) Years")
-                                .font(.system(size: 28, weight: .extrabold, design: .rounded))
+                                .font(.system(size: 28, weight: .heavy, design: .rounded))
                                 .foregroundColor(bioAgeDivergence < 0 ? SomnaTheme.primaryTeal : SomnaTheme.warningAmber)
                         }
                         Spacer()

@@ -14,11 +14,15 @@ public struct AICoachChatView: View {
         ChatMessage(
             id: "msg-1",
             sender: .ai,
-            text: "Hello, I am Dr. Somna, your predictive sleep and circadian medicine assistant. I have reviewed last night's session: \(78) min of Slow-Wave Sleep and an average HRV of 54ms. How can I optimize your sleep architecture today?",
+            text: "Hello, I am Dr. Somna, your predictive sleep and circadian medicine assistant. I have reviewed last night's session: 78 min of Slow-Wave Sleep and an average HRV of 54ms. How can I optimize your sleep architecture today?",
             timestamp: "Just now"
         )
     ]
     @State private var isTyping: Bool = false
+    
+    public init(currentRecord: Binding<SleepRecord>) {
+        self._currentRecord = currentRecord
+    }
     
     private let promptChips = [
         "Why is my Deep Sleep low?",
@@ -46,7 +50,7 @@ public struct AICoachChatView: View {
                             .font(.system(size: 14, weight: .bold))
                             .foregroundColor(.white)
                         Text("ONLINE")
-                            .font(.system(size: 8, weight: .extrabold, design: .monospaced))
+                            .font(.system(size: 8, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.primaryTeal)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)

@@ -6,9 +6,32 @@
 
 import SwiftUI
 
+public struct OnboardingStep: Identifiable, Sendable {
+    public var id: String { tag }
+    public let tag: String
+    public let title: String
+    public let subtitle: String
+    public let icon: String
+    public let color: Color
+    public let bullets: [String]
+    
+    public init(tag: String, title: String, subtitle: String, icon: String, color: Color, bullets: [String]) {
+        self.tag = tag
+        self.title = title
+        self.subtitle = subtitle
+        self.icon = icon
+        self.color = color
+        self.bullets = bullets
+    }
+}
+
 public struct OnboardingTourView: View {
     @Binding public var isPresented: Bool
     @State private var currentStep: Int = 0
+    
+    public init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
     
     private let steps: [OnboardingStep] = [
         OnboardingStep(
@@ -97,8 +120,7 @@ public struct OnboardingTourView: View {
                 
                 // Tab Content
                 TabView(selection: $currentStep) {
-                    ForEach(0..<steps.count, id: \.self) { idx in
-                        let step = steps[idx]
+                    ForEach(Array(steps.enumerated()), id: \.element.tag) { idx, step in
                         VStack(spacing: 24) {
                             
                             // Step Icon Halo
@@ -121,7 +143,7 @@ public struct OnboardingTourView: View {
                             
                             // Tag Badge
                             Text(step.tag)
-                                .font(.system(size: 10, weight: .extrabold, design: .monospaced))
+                                .font(.system(size: 10, weight: .heavy, design: .monospaced))
                                 .foregroundColor(step.color)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 4)
@@ -214,13 +236,4 @@ public struct OnboardingTourView: View {
             }
         }
     }
-}
-
-private struct OnboardingStep {
-    let tag: String
-    let title: String
-    let subtitle: String
-    let icon: String
-    let color: Color
-    let bullets: [String]
 }
