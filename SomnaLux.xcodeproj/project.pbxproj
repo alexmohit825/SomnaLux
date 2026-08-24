@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DCD76FB2CCED7F13821E61E /* LongevityPrognosisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2891048DF5C80731C293282 /* LongevityPrognosisView.swift */; };
+		12016AC55F7048E6D57B4B78 /* SleepModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79819F5EF8CCE33CD8F65F4 /* SleepModels.swift */; };
+		2E2AC2EDC02B3CC57E0B24B4 /* ScientificMechanismsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6671A7B8B10F2F7689215782 /* ScientificMechanismsView.swift */; };
+		2E97356F1FFEB464F407CE82 /* NeuromodulationStudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553308ECDD2DB191A04ADA2D /* NeuromodulationStudioView.swift */; };
+		355193A9C9D73738084BE219 /* SleepDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F8C68001690C22560F43AA /* SleepDashboardView.swift */; };
+		4195A003E7C7D14FD823AC3C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9039B874002E6DCFA7165B97 /* Theme.swift */; };
+		4555572AE2A56D8A260EE415 /* AudioSynthesizerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB1FBAD3C4D18BDA6A29FEB /* AudioSynthesizerEngine.swift */; };
+		733638D2C5E9BE1CB6C12F8E /* HealthKitSleepManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7D1A5D1087B636A6A7F435 /* HealthKitSleepManager.swift */; };
+		74F44FD7AEE801CD518606D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BEC81227659F35F2294C7 /* MainTabView.swift */; };
+		837B8709890D34EEA2AD8AC0 /* SomnaLuxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFDDCCA98E94E463BE1EC9 /* SomnaLuxWidget.swift */; };
+		853D1927EDFED3FC50277333 /* SomnaLuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DC96B5E92A74D0AE0554A7 /* SomnaLuxApp.swift */; };
+		8EA2FAA3DA61B5095F98AD02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC2E1E3181391F30BBDDF4D1 /* Assets.xcassets */; };
+		96BC5CC2E6241762DBADE6F9 /* OnboardingTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA1C2591F4FC96EC3B9F5A /* OnboardingTourView.swift */; };
+		AE6B51520B8F8DC935278D7A /* CBTICountermeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0456614444857A3E600EDF /* CBTICountermeasureView.swift */; };
+		BB91D0F80586403FBE1A43A5 /* HypnogramCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F55A80D28ACD914DA61EC1 /* HypnogramCanvasView.swift */; };
+		BCDE4167823BB2D144583DEB /* AICoachChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF435E85A57E95A6EFA6FF5 /* AICoachChatView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0FF435E85A57E95A6EFA6FF5 /* AICoachChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachChatView.swift; sourceTree = "<group>"; };
+		22BFBD82AD16516A23E872D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3120DD26671B0C2084ED0F6E /* SomnaLux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SomnaLux.entitlements; sourceTree = "<group>"; };
+		3E4BEC81227659F35F2294C7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		4BBA1C2591F4FC96EC3B9F5A /* OnboardingTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTourView.swift; sourceTree = "<group>"; };
+		553308ECDD2DB191A04ADA2D /* NeuromodulationStudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuromodulationStudioView.swift; sourceTree = "<group>"; };
+		6671A7B8B10F2F7689215782 /* ScientificMechanismsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificMechanismsView.swift; sourceTree = "<group>"; };
+		68FFDDCCA98E94E463BE1EC9 /* SomnaLuxWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomnaLuxWidget.swift; sourceTree = "<group>"; };
+		81DC96B5E92A74D0AE0554A7 /* SomnaLuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomnaLuxApp.swift; sourceTree = "<group>"; };
+		9039B874002E6DCFA7165B97 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9DB1FBAD3C4D18BDA6A29FEB /* AudioSynthesizerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSynthesizerEngine.swift; sourceTree = "<group>"; };
+		C0F55A80D28ACD914DA61EC1 /* HypnogramCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypnogramCanvasView.swift; sourceTree = "<group>"; };
+		C1F8C68001690C22560F43AA /* SleepDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDashboardView.swift; sourceTree = "<group>"; };
+		CD7D1A5D1087B636A6A7F435 /* HealthKitSleepManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSleepManager.swift; sourceTree = "<group>"; };
+		EB0456614444857A3E600EDF /* CBTICountermeasureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBTICountermeasureView.swift; sourceTree = "<group>"; };
+		EC2E1E3181391F30BBDDF4D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED2D2B415DBB8019D3E12EFA /* SomnaLux.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SomnaLux.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2891048DF5C80731C293282 /* LongevityPrognosisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongevityPrognosisView.swift; sourceTree = "<group>"; };
+		F79819F5EF8CCE33CD8F65F4 /* SleepModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepModels.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		07DDACF17C2C4BFDEE655906 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED2D2B415DBB8019D3E12EFA /* SomnaLux.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E12AC4562F08DA45E361220 /* SomnaLux */ = {
+			isa = PBXGroup;
+			children = (
+				EC2E1E3181391F30BBDDF4D1 /* Assets.xcassets */,
+				22BFBD82AD16516A23E872D2 /* Info.plist */,
+				3120DD26671B0C2084ED0F6E /* SomnaLux.entitlements */,
+				81DC96B5E92A74D0AE0554A7 /* SomnaLuxApp.swift */,
+				C08E9D70ADCDCF63EC5571B4 /* Models */,
+				3E92CE7F1FAADD4FC52AE0C8 /* Services */,
+				3BB8F5141C2D00E04AD4A2E7 /* Theme */,
+				DE66EE43F7B158097D891B9F /* Views */,
+				40B4C0CF2E95F77B38925661 /* Widgets */,
+			);
+			name = SomnaLux;
+			path = ios/SomnaLux;
+			sourceTree = "<group>";
+		};
+		3BB8F5141C2D00E04AD4A2E7 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				9039B874002E6DCFA7165B97 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		3E92CE7F1FAADD4FC52AE0C8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9DB1FBAD3C4D18BDA6A29FEB /* AudioSynthesizerEngine.swift */,
+				CD7D1A5D1087B636A6A7F435 /* HealthKitSleepManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		40B4C0CF2E95F77B38925661 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				68FFDDCCA98E94E463BE1EC9 /* SomnaLuxWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		C08E9D70ADCDCF63EC5571B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F79819F5EF8CCE33CD8F65F4 /* SleepModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C118069CC78141F4C770CBD7 = {
+			isa = PBXGroup;
+			children = (
+				2E12AC4562F08DA45E361220 /* SomnaLux */,
+				07DDACF17C2C4BFDEE655906 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE66EE43F7B158097D891B9F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0FF435E85A57E95A6EFA6FF5 /* AICoachChatView.swift */,
+				EB0456614444857A3E600EDF /* CBTICountermeasureView.swift */,
+				C0F55A80D28ACD914DA61EC1 /* HypnogramCanvasView.swift */,
+				F2891048DF5C80731C293282 /* LongevityPrognosisView.swift */,
+				3E4BEC81227659F35F2294C7 /* MainTabView.swift */,
+				553308ECDD2DB191A04ADA2D /* NeuromodulationStudioView.swift */,
+				4BBA1C2591F4FC96EC3B9F5A /* OnboardingTourView.swift */,
+				6671A7B8B10F2F7689215782 /* ScientificMechanismsView.swift */,
+				C1F8C68001690C22560F43AA /* SleepDashboardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B94A4FBECEFA870D06114C27 /* SomnaLux */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41709B9F40E8D62722AC3993 /* Build configuration list for PBXNativeTarget "SomnaLux" */;
+			buildPhases = (
+				98EFD70F72D8583D5BC7BB96 /* Sources */,
+				66B9F089BDD52DEC4831E4BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SomnaLux;
+			packageProductDependencies = (
+			);
+			productName = SomnaLux;
+			productReference = ED2D2B415DBB8019D3E12EFA /* SomnaLux.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		943EC5F49C4D690BB7673B2F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B94A4FBECEFA870D06114C27 = {
+						DevelopmentTeam = 523MJL63MC;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FD1E8716CCCEF0BFCF74A7E0 /* Build configuration list for PBXProject "SomnaLux" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C118069CC78141F4C770CBD7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 07DDACF17C2C4BFDEE655906 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B94A4FBECEFA870D06114C27 /* SomnaLux */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66B9F089BDD52DEC4831E4BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EA2FAA3DA61B5095F98AD02 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		98EFD70F72D8583D5BC7BB96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCDE4167823BB2D144583DEB /* AICoachChatView.swift in Sources */,
+				4555572AE2A56D8A260EE415 /* AudioSynthesizerEngine.swift in Sources */,
+				AE6B51520B8F8DC935278D7A /* CBTICountermeasureView.swift in Sources */,
+				733638D2C5E9BE1CB6C12F8E /* HealthKitSleepManager.swift in Sources */,
+				BB91D0F80586403FBE1A43A5 /* HypnogramCanvasView.swift in Sources */,
+				0DCD76FB2CCED7F13821E61E /* LongevityPrognosisView.swift in Sources */,
+				74F44FD7AEE801CD518606D9 /* MainTabView.swift in Sources */,
+				2E97356F1FFEB464F407CE82 /* NeuromodulationStudioView.swift in Sources */,
+				96BC5CC2E6241762DBADE6F9 /* OnboardingTourView.swift in Sources */,
+				2E2AC2EDC02B3CC57E0B24B4 /* ScientificMechanismsView.swift in Sources */,
+				355193A9C9D73738084BE219 /* SleepDashboardView.swift in Sources */,
+				12016AC55F7048E6D57B4B78 /* SleepModels.swift in Sources */,
+				853D1927EDFED3FC50277333 /* SomnaLuxApp.swift in Sources */,
+				837B8709890D34EEA2AD8AC0 /* SomnaLuxWidget.swift in Sources */,
+				4195A003E7C7D14FD823AC3C /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4362B9D60E6E2CB45BA57312 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 523MJL63MC;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ios/SomnaLux/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alex.SomnaLux;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		641430783DD2F1539280D515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ios/SomnaLux/SomnaLux.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 523MJL63MC;
+				INFOPLIST_FILE = ios/SomnaLux/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alex.SomnaLux;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		756FD6404FF37D40528664B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 523MJL63MC;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ios/SomnaLux/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alex.SomnaLux;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		FB98316BC4945D7C779F4A53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ios/SomnaLux/SomnaLux.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 523MJL63MC;
+				INFOPLIST_FILE = ios/SomnaLux/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Alex.SomnaLux;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41709B9F40E8D62722AC3993 /* Build configuration list for PBXNativeTarget "SomnaLux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				641430783DD2F1539280D515 /* Debug */,
+				FB98316BC4945D7C779F4A53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FD1E8716CCCEF0BFCF74A7E0 /* Build configuration list for PBXProject "SomnaLux" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				756FD6404FF37D40528664B4 /* Debug */,
+				4362B9D60E6E2CB45BA57312 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 943EC5F49C4D690BB7673B2F /* Project object */;
+}
