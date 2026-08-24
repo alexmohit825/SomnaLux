@@ -21,6 +21,15 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
+      - name: Commit Xcode Project to Repo for Xcode Cloud
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add SomnaLux.xcodeproj
+          if git commit -m "chore: add SomnaLux.xcodeproj for Apple Xcode Cloud"; then
+            git push origin main
+          fi
+
       - name: Build for iOS Simulator
         run: |
           xcodebuild build \
