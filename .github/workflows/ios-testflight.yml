@@ -30,9 +30,9 @@ jobs:
             CODE_SIGNING_ALLOWED=NO
 
   deploy-testflight:
-    name: Archive & Upload to Apple TestFlight
+    name: Archive & Upload to Apple TestFlight (100% Cloud)
     needs: build-and-test
-    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     runs-on: macos-15
     steps:
       - name: Checkout Source Code
@@ -44,11 +44,10 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
-      - name: Install Apple App Store Connect API Key
+      - name: Setup App Store Connect Cloud API Key
         env:
           APP_STORE_CONNECT_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
           KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
         run: |
           mkdir -p ~/.appstoreconnect/private_keys
           echo "$APP_STORE_CONNECT_KEY" > ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8
@@ -62,13 +61,15 @@ jobs:
             -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO
 
-      - name: Upload to TestFlight via altool
+      - name: Cloud Sign & Upload Directly to TestFlight
         env:
           KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
         run: |
-          xcrun altool --upload-app \
-            -f build/SomnaLux.xcarchive \
-            -t ios \
-            --apiKey "$KEY_ID" \
-            --apiIssuer "$ISSUER_ID"
+          xcodebuild -exportArchive \
+            -archivePath build/SomnaLux.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8 \
+            -authenticationKeyID "$KEY_ID" \
+            -authenticationKeyIssuerID "$ISSUER_ID"
