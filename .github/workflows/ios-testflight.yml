@@ -59,6 +59,7 @@ jobs:
             -scheme SomnaLux \
             -archivePath build/SomnaLux.xcarchive \
             -destination 'generic/platform=iOS' \
+            DEVELOPMENT_TEAM=523MJL63MC \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Cloud Sign & Upload Directly to TestFlight
