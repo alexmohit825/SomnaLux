@@ -286,7 +286,7 @@ private struct HealthKitSyncView: View {
                             await hk.requestAuthorization()
                             if let rec = hk.latestRecord {
                                 currentRecord = rec
-                                syncStatus = "Synced: \(rec.durationHoursString)h (\(rec.deepMinutes)m SWS)"
+                                syncStatus = "Synced: \(rec.totalHoursString)h (\(rec.deepMinutes)m SWS)"
                             } else {
                                 syncStatus = "Using local simulation baseline"
                             }
