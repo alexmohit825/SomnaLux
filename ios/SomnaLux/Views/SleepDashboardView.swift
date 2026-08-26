@@ -13,6 +13,7 @@ public struct SleepDashboardView: View {
     
     // First-Time User In-App Guide Toggle
     @State private var showOrientationGuide: Bool = true
+    @State private var showMetricGlossary: Bool = false
     
     // Interactive What-If Modeler State
     @State private var simExtraDeep: Double = 0
@@ -58,18 +59,18 @@ public struct SleepDashboardView: View {
     
     public var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 24) {
+            VStack(spacing: 28) {
                 
                 // =========================================================
                 // TOP: FIRST-TIME USER ORIENTATION & GUIDE CARD
                 // =========================================================
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading, spacing: 14) {
                     HStack {
                         HStack(spacing: 6) {
                             Image(systemName: "lightbulb.fill")
                                 .font(.system(size: 11, weight: .bold))
                                 .foregroundColor(SomnaTheme.warningAmber)
-                            Text("FIRST-TIME USER GUIDE")
+                            Text("USER ORIENTATION & ROADMAP")
                                 .font(.system(size: 9, weight: .heavy, design: .monospaced))
                                 .foregroundColor(SomnaTheme.warningAmber)
                         }
@@ -80,9 +81,9 @@ public struct SleepDashboardView: View {
                         
                         Spacer()
                         
-                        Button(action: { withAnimation { showOrientationGuide.toggle() } }) {
+                        Button(action: { withAnimation(.spring()) { showOrientationGuide.toggle() } }) {
                             HStack(spacing: 4) {
-                                Text(showOrientationGuide ? "Hide Guide" : "Show Guide")
+                                Text(showOrientationGuide ? "Collapse Guide" : "Expand Guide")
                                     .font(.system(size: 11, weight: .bold))
                                 Image(systemName: showOrientationGuide ? "chevron.up" : "chevron.down")
                                     .font(.system(size: 10))
@@ -92,16 +93,50 @@ public struct SleepDashboardView: View {
                     }
                     
                     if showOrientationGuide {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("How to Read & Use Your Sleep Optimization Dashboard")
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("How SomnaLux Works: 4 Simple Steps to Cellular Rejuvenation")
                                 .font(.system(size: 14, weight: .bold))
                                 .foregroundColor(.white)
                             
                             VStack(spacing: 8) {
-                                OrientationStepRow(num: "1", title: "Test Scenarios (Section 01)", desc: "Tap any scenario below to see how stress, insomnia, or optimal habits alter your cellular score.")
-                                OrientationStepRow(num: "2", title: "Target SWS Detox (Section 02)", desc: "Check your 90-min Slow-Wave Sleep reservoir. Hitting 20%+ reduces biological aging.")
-                                OrientationStepRow(num: "3", title: "Simulate 'What-If' (Section 03)", desc: "Slide the levers to simulate how adding +20m of deep sleep directly boosts longevity.")
-                                OrientationStepRow(num: "4", title: "Follow 3 Bedtime Steps (Section 04)", desc: "Apply the prescribed vagal breath and 66°F room microclimate before sleeping tonight.")
+                                OrientationStepRow(
+                                    num: "1",
+                                    title: "Section 01 • Explore Scenarios",
+                                    desc: "Tap clinical archetypes (Baseline, High Stress, Chronic Insomnia, Elite) to test how real-world conditions alter your biomarkers."
+                                )
+                                OrientationStepRow(
+                                    num: "2",
+                                    title: "Section 02 • Monitor SWS Glymphatic Reservoir",
+                                    desc: "Track your Restorative Score and Slow-Wave Sleep (SWS). Achieving 90+ minutes (20% of night) clears brain toxins and reverses biological aging."
+                                )
+                                OrientationStepRow(
+                                    num: "3",
+                                    title: "Section 03 • Simulate What-If Levers",
+                                    desc: "Move the biomarker sliders to see how +20m of deep sleep or higher HRV directly lowers your biological age."
+                                )
+                                OrientationStepRow(
+                                    num: "4",
+                                    title: "Section 04 • Execute Bedtime Prescriptions",
+                                    desc: "Follow the 3 nightly action steps: 4-7-8 vagal breath reset (Tab 05), 66°F room microclimate, and morning lux light anchoring."
+                                )
+                            }
+                            
+                            // Metric Glossary Trigger Button
+                            Button(action: { showMetricGlossary.toggle() }) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "book.closed.fill")
+                                        .font(.system(size: 11))
+                                    Text("Open Sleep Metrics Glossary & Clinical Definitions")
+                                        .font(.system(size: 11, weight: .bold))
+                                    Spacer()
+                                    Image(systemName: "arrow.right")
+                                        .font(.system(size: 10))
+                                }
+                                .foregroundColor(SomnaTheme.primaryTeal)
+                                .padding(12)
+                                .background(SomnaTheme.secondaryCard)
+                                .cornerRadius(12)
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(SomnaTheme.primaryTeal.opacity(0.3), lineWidth: 1))
                             }
                         }
                         .padding(.top, 4)
@@ -131,10 +166,10 @@ public struct SleepDashboardView: View {
                     }
                     
                     // Explainer Note
-                    Text("💡 What this does: Tap a profile below to explore how different real-world conditions affect your sleep score, or sync your Apple Watch data directly under Tab 06.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "Why this section is here:",
+                        text: "Tap a profile below to see how specific pathologies (stress, insomnia, circadian delay) alter your sleep architecture, or sync your Apple Watch data directly under Tab 05."
+                    )
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
@@ -206,10 +241,10 @@ public struct SleepDashboardView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("💡 What this means: Your Restorative Score (0-100) measures how much cellular rejuvenation occurred. Slow-Wave Sleep (SWS) flushes brain toxins and releases 95% of growth hormone.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "How your score is calculated:",
+                        text: "Your 0-100 Score combines Sleep Efficiency (35%), Slow-Wave Deep Sleep (35%), REM Dreaming (15%), and Nocturnal Vagal HRV (15%). Achieving 90+ min of SWS triggers glymphatic brain detox and takes years off your biological age."
+                    )
                     
                     // Main Score & SWS Reservoir Card
                     VStack(spacing: 20) {
@@ -359,10 +394,10 @@ public struct SleepDashboardView: View {
                         }
                     }
                     
-                    Text("💡 What this does: Drag the sliders to test how gaining more deep sleep or improving your HRV would instantly raise your score and reverse biological aging.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "How to use this simulation:",
+                        text: "Drag the sliders below to simulate what happens to your biological age and Restorative Score if you increase your Deep Sleep by +30m or raise your nocturnal HRV by +20ms."
+                    )
                     
                     VStack(spacing: 16) {
                         // Slider 1: SWS Deep Sleep
@@ -418,10 +453,10 @@ public struct SleepDashboardView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("💡 What this is: Clinical root-cause findings and 3 immediate behavioral actions to execute tonight before bed.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "Clinical Rationale:",
+                        text: "Dr. Somna AI analyzes your polysomnographic telemetry to identify autonomic imbalances and prescribes 3 targeted behavioral countermeasures for tonight."
+                    )
                     
                     VStack(alignment: .leading, spacing: 16) {
                         HStack {
@@ -469,10 +504,10 @@ public struct SleepDashboardView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("💡 What this is: Visual timeline of your 4 sleep stages across the night. Yellow = Awake, Purple = REM Dreams, Blue = Light Sleep, Teal = Deep Slow-Wave Rejuvenation.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "How to read the Hypnogram timeline:",
+                        text: "This canvas illustrates your sleep architecture throughout the night: Yellow = Awake (WASO), Lavender = REM (Cognitive synthesis & dreams), Indigo = Light (Stage N2 sleep spindles), Teal = Deep SWS (0.5-2.0Hz Delta detox). Tap any block to inspect epoch heart rate."
+                    )
                     
                     VStack(alignment: .leading, spacing: 14) {
                         HypnogramCanvasView(epochs: currentRecord.stageEpochs, totalMinutes: Double(currentRecord.durationMinutes))
@@ -527,10 +562,10 @@ public struct SleepDashboardView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Text("💡 What these numbers mean: Key biological indicators captured by wearable sensors and bedroom environmental telemetry.")
-                        .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
-                        .lineSpacing(2)
+                    SectionExplainerCard(
+                        title: "Sensor Telemetry Meaning:",
+                        text: "Nocturnal HRV indicates parasympathetic nervous system tone (higher is better). Heart Rate Nadir marks the deepest point of cardiovascular decompression. Room temperature at 66°F ensures peripheral vasodilation."
+                    )
                     
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         TelemetryMiniCard(icon: "waveform.path.ecg", title: "Nocturnal HRV", value: "\(effectiveHrv) ms", sub: "Vagal Dominance", color: SomnaTheme.primaryTeal)
@@ -545,6 +580,39 @@ public struct SleepDashboardView: View {
             .padding(.bottom, 80) // Spacing for floating audio mini-player
         }
         .background(SomnaTheme.background.ignoresSafeArea())
+        .sheet(isPresented: $showMetricGlossary) {
+            SleepMetricsGlossarySheet(isPresented: $showMetricGlossary)
+        }
+    }
+}
+
+// Reusable Section Explainer Banner
+private struct SectionExplainerCard: View {
+    let title: String
+    let text: String
+    
+    var body: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(systemName: "info.circle.fill")
+                .font(.system(size: 12))
+                .foregroundColor(SomnaTheme.primaryTeal)
+                .padding(.top, 1)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(SomnaTheme.primaryTeal)
+                Text(text)
+                    .font(.system(size: 11))
+                    .foregroundColor(SomnaTheme.textSecondary)
+                    .lineSpacing(2)
+            }
+            Spacer()
+        }
+        .padding(12)
+        .background(SomnaTheme.primaryTeal.opacity(0.06))
+        .cornerRadius(12)
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(SomnaTheme.primaryTeal.opacity(0.18), lineWidth: 1))
     }
 }
 
@@ -661,5 +729,60 @@ private struct TelemetryMiniCard: View {
         }
         .padding(14)
         .luxuryCard()
+    }
+}
+
+// In-App Metrics Glossary Sheet
+public struct SleepMetricsGlossarySheet: View {
+    @Binding public var isPresented: Bool
+    
+    public init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
+    
+    private let terms = [
+        ("Slow-Wave Sleep (SWS / Deep Sleep)", "Brainwave frequencies between 0.5 and 2.0 Hz. During SWS, astrocytes shrink by 60%, allowing cerebrospinal fluid to flush out Beta-Amyloid and Tau proteins. 95% of growth hormone is secreted here.", SomnaTheme.primaryTeal),
+        ("Sleep Efficiency (%)", "The percentage of total time in bed spent in actual sleep. Clinical target is >85%. Low efficiency signals prolonged sleep latency or frequent nighttime awakenings.", SomnaTheme.primaryTeal),
+        ("Heart Rate Variability (HRV / RMSSD)", "Variation in time between heartbeats measured in milliseconds. High nocturnal HRV reflects strong parasympathetic vagal tone and autonomic recovery.", SomnaTheme.circadianIndigo),
+        ("Biological Sleep Age Shift", "Divergence between chronological age and biological tissue age based on polysomnographic deep sleep density and nocturnal autonomic decompression.", SomnaTheme.emeraldOptimal),
+        ("Wake After Sleep Onset (WASO)", "Total minutes spent awake in bed after initial sleep onset. Less than 20 minutes indicates strong sleep maintenance.", SomnaTheme.warningAmber),
+        ("Circadian DLMO & SCN", "Dim Light Melatonin Onset coordinated by the Suprachiasmatic Nucleus master clock. Dictates the biological window for slow-wave initiation.", SomnaTheme.remLavender)
+    ]
+    
+    public var body: some View {
+        NavigationView {
+            ZStack {
+                SomnaTheme.background.ignoresSafeArea()
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(terms, id: \.0) { term, def, col in
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(term)
+                                    .font(.system(size: 13, weight: .bold))
+                                    .foregroundColor(col)
+                                Text(def)
+                                    .font(.system(size: 12))
+                                    .foregroundColor(SomnaTheme.textSecondary)
+                                    .lineSpacing(3)
+                            }
+                            .padding(16)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .luxuryCard(borderColor: col.opacity(0.3))
+                        }
+                    }
+                    .padding(20)
+                }
+            }
+            .navigationTitle("Sleep Science Glossary")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") { isPresented = false }
+                        .foregroundColor(SomnaTheme.primaryTeal)
+                        .font(.system(size: 14, weight: .bold))
+                }
+            }
+        }
     }
 }

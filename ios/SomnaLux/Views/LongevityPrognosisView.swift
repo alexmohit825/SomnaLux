@@ -1,7 +1,7 @@
 //
 //  LongevityPrognosisView.swift
 //  SomnaLux
-//  10-Year Health Impact, Cardiovascular Hazard & Epigenetic Longevity
+//  10-Year Health Impact, Cardiovascular Hazard & Epigenetic Longevity with Orientation Guides
 //
 
 import SwiftUI
@@ -28,7 +28,7 @@ public struct LongevityPrognosisView: View {
                         Image(systemName: "shield.checkered")
                             .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.circadianIndigo)
-                        Text("10-YEAR PROGNOSTIC TRAJECTORY")
+                        Text("EPIGENETIC & HAZARD TRAJECTORY ENGINE")
                             .font(.system(size: 9, weight: .heavy, design: .monospaced))
                             .foregroundColor(SomnaTheme.circadianIndigo)
                     }
@@ -49,6 +49,26 @@ public struct LongevityPrognosisView: View {
                 .padding(20)
                 .luxuryCard(borderColor: SomnaTheme.circadianIndigo.opacity(0.3))
                 
+                // Orientation Card
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.system(size: 14))
+                        .foregroundColor(SomnaTheme.circadianIndigo)
+                        .padding(.top, 2)
+                    
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("Understanding Your Biological Sleep Age:")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                        Text("Chronological age counts your calendar years. Biological Sleep Age measures the physiological wear and tear on your vascular, neural, and endocrine systems based on nightly deep sleep density and HRV dipping.")
+                            .font(.system(size: 11))
+                            .foregroundColor(SomnaTheme.textSecondary)
+                            .lineSpacing(2)
+                    }
+                }
+                .padding(14)
+                .luxuryCard(borderColor: SomnaTheme.circadianIndigo.opacity(0.25))
+                
                 // Biological Age Divergence Meter
                 VStack(spacing: 16) {
                     HStack {
@@ -67,39 +87,44 @@ public struct LongevityPrognosisView: View {
                     }
                     
                     Text(bioAgeDivergence < 0
-                         ? "Your slow-wave sleep density (\(currentRecord.deepPercentage)%) and vagal recovery (\(currentRecord.hrvAverage)ms HRV) place your cellular rejuvenation trajectory \(abs(bioAgeDivergence)) years younger than chronological baseline."
-                         : "Sub-optimal slow-wave sleep is accelerating biological age by \(bioAgeDivergence) years due to elevated nocturnal cortisol and suppressed glymphatic CSF clearing.")
+                         ? "✓ Rejuvenating Trajectory: Your slow-wave sleep density (\(currentRecord.deepPercentage)%) and vagal recovery (\(currentRecord.hrvAverage)ms HRV) place your cellular age \(abs(bioAgeDivergence)) years younger than chronological baseline."
+                         : "⚠️ Elevated Epigenetic Strain: Sub-optimal slow-wave sleep is accelerating biological age by \(bioAgeDivergence) years due to elevated nocturnal cortisol and suppressed glymphatic CSF clearing.")
                         .font(.system(size: 12))
                         .foregroundColor(SomnaTheme.textSecondary)
                         .lineSpacing(3)
                 }
                 .padding(20)
-                .luxuryCard()
+                .luxuryCard(borderColor: bioAgeDivergence < 0 ? SomnaTheme.primaryTeal.opacity(0.3) : SomnaTheme.warningAmber.opacity(0.3))
                 
                 // 10-Year Hazard Ratio Cards
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("10-Year Relative Hazard Ratios:")
+                    Text("10-Year Projected Multi-Organ Hazard Ratios:")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(.white)
+                    
+                    Text("💡 What these mean: Long-term epidemiological cohorts (Framingham, UK Biobank) show that chronic slow-wave sleep deficits multiply cardiovascular, neurodegenerative, and metabolic disease risk over a 10-year horizon.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     HazardRow(
                         title: "Cardiovascular Endothelial Stress",
                         hazard: bioAgeDivergence < 0 ? "-24% Hazard Reduction" : "+38% Relative Risk",
-                        desc: "Nocturnal blood pressure dipping prevents coronary artery calcification.",
+                        desc: "Nocturnal blood pressure dipping prevents coronary artery calcification and microvascular stiffening.",
                         isPositive: bioAgeDivergence < 0
                     )
                     
                     HazardRow(
                         title: "Neurocognitive Tau Accumulation",
                         hazard: bioAgeDivergence < 0 ? "-32% Waste Retention" : "+45% Amyloid Burden",
-                        desc: "Hydrodynamic interstitial flushing during slow-wave delta bursts.",
+                        desc: "Hydrodynamic interstitial flushing during slow-wave delta bursts clears neurotoxic protein aggregations.",
                         isPositive: bioAgeDivergence < 0
                     )
                     
                     HazardRow(
                         title: "Metabolic Insulin Sensitivity (GLUT4)",
                         hazard: bioAgeDivergence < 0 ? "+28% Glucose Disposal" : "-22% Cellular Sensitivity",
-                        desc: "SWS restores peripheral tissue insulin receptor phosphorylation.",
+                        desc: "SWS restores peripheral tissue insulin receptor phosphorylation and protects pancreatic beta cells.",
                         isPositive: bioAgeDivergence < 0
                     )
                 }

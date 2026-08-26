@@ -1,7 +1,7 @@
 //
 //  CBTICountermeasureView.swift
 //  SomnaLux
-//  Clinical CBT-I Sleep Restriction & Caffeine Metabolic Half-Life Engine
+//  Clinical CBT-I Sleep Restriction & Caffeine Metabolic Half-Life Engine with Orientation Guides
 //
 
 import SwiftUI
@@ -60,11 +60,36 @@ public struct CBTICountermeasureView: View {
                 .padding(20)
                 .luxuryCard(borderColor: SomnaTheme.circadianIndigo.opacity(0.3))
                 
+                // Clinic Orientation Card
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.system(size: 14))
+                        .foregroundColor(SomnaTheme.circadianIndigo)
+                        .padding(.top, 2)
+                    
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("What is CBT-I & How to Use This Clinic:")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                        Text("CBT-I is the #1 first-line clinical treatment for insomnia. It uses sleep restriction, circadian anchoring, and metabolic hygiene to retrain your brain that the bed is solely for sleep.")
+                            .font(.system(size: 11))
+                            .foregroundColor(SomnaTheme.textSecondary)
+                            .lineSpacing(2)
+                    }
+                }
+                .padding(14)
+                .luxuryCard(borderColor: SomnaTheme.circadianIndigo.opacity(0.25))
+                
                 // Sleep Restriction Window Calculator Card
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Sleep Restriction Therapy (SRT) Prescription")
                         .font(.system(size: 14, weight: .bold))
                         .foregroundColor(.white)
+                    
+                    Text("💡 How Sleep Restriction works: Instead of lying awake in bed tossing and turning, we temporarily compress your bed window to match your actual sleep capacity. This builds intense homeostatic sleep pressure, boosting your deep sleep.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     HStack(spacing: 12) {
                         VStack(alignment: .leading, spacing: 2) {
@@ -107,9 +132,9 @@ public struct CBTICountermeasureView: View {
                         .cornerRadius(12)
                     }
                     
-                    Text("Directive: Restrict bedtime to match actual sleep capacity. As 5-day rolling efficiency exceeds 85%, expand the bed window by +15 minutes.")
+                    Text("Clinical Rule: As your 5-day rolling efficiency exceeds 85%, expand your bed window by +15 minutes earlier until reaching 8 hours.")
                         .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
+                        .foregroundColor(SomnaTheme.textSecondary)
                         .lineSpacing(2)
                 }
                 .padding(20)
@@ -126,6 +151,11 @@ public struct CBTICountermeasureView: View {
                             .font(.system(size: 12, weight: .bold, design: .monospaced))
                             .foregroundColor(caffeineRemainingMg > 50 ? SomnaTheme.warningAmber : SomnaTheme.primaryTeal)
                     }
+                    
+                    Text("💡 How caffeine disrupts SWS: Caffeine blocks A1/A2A adenosine receptors without clearing fatigue. Even if you fall asleep, caffeine in the bloodstream suppresses slow-wave delta sleep spindles by up to 35%.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
                     
                     VStack(spacing: 12) {
                         VStack(alignment: .leading, spacing: 4) {
@@ -145,9 +175,9 @@ public struct CBTICountermeasureView: View {
                         }
                     }
                     
-                    Text("Adenosine Antagonism: Caffeine blocks A1/A2A adenosine receptors without clearing sleep pressure. A 10-hour caffeine cutoff before bed prevents slow-wave sleep spindle suppression.")
+                    Text("Guidance: Aim for a strict 10-hour caffeine cutoff before your scheduled bedtime to ensure less than 25mg active caffeine remains.")
                         .font(.system(size: 11))
-                        .foregroundColor(SomnaTheme.textMuted)
+                        .foregroundColor(SomnaTheme.textSecondary)
                         .lineSpacing(2)
                 }
                 .padding(20)
@@ -159,10 +189,15 @@ public struct CBTICountermeasureView: View {
                         .font(.system(size: 14, weight: .bold))
                         .foregroundColor(.white)
                     
+                    Text("💡 Complete these 3 somatic triggers 45 minutes before bedtime to shift your autonomic nervous system from fight-or-flight into rest-and-digest mode.")
+                        .font(.system(size: 11))
+                        .foregroundColor(SomnaTheme.textMuted)
+                        .lineSpacing(2)
+                    
                     VStack(spacing: 8) {
-                        ChecklistRow(done: $task1Done, title: "Thermal microclimate set to 66°F", sub: "Triggers peripheral vascular vasodilation")
+                        ChecklistRow(done: $task1Done, title: "Thermal microclimate set to 66°F", sub: "Triggers peripheral vascular vasodilation to dump core heat")
                         ChecklistRow(done: $task2Done, title: "Dim blue light photons (<10 lux)", sub: "Unblocks pineal gland melatonin synthesis")
-                        ChecklistRow(done: $task3Done, title: "6 Cycles of 4-7-8 Vagal Breathing", sub: "Stimulates acetylcholine sinoatrial brake")
+                        ChecklistRow(done: $task3Done, title: "6 Cycles of 4-7-8 Vagal Breathing", sub: "Stimulates acetylcholine sinoatrial brake to slow resting heart rate")
                     }
                 }
                 .padding(20)

@@ -1,7 +1,7 @@
 //
 //  AICoachChatView.swift
 //  SomnaLux
-//  Dr. Somna AI Sleep Neurologist Chat Consultation Interface
+//  Dr. Somna AI Sleep Neurologist Chat Consultation Interface with Orientation Guides
 //
 
 import SwiftUI
@@ -66,6 +66,22 @@ public struct AICoachChatView: View {
             .padding(16)
             .background(SomnaTheme.cardBackground)
             .overlay(Divider().background(SomnaTheme.cardBorder), alignment: .bottom)
+            
+            // Clinical Assistant Orientation Ribbon
+            HStack(alignment: .top, spacing: 8) {
+                Image(systemName: "sparkles")
+                    .font(.system(size: 11))
+                    .foregroundColor(SomnaTheme.primaryTeal)
+                    .padding(.top, 1)
+                Text("💡 Clinical Assistant Orientation: Ask Dr. Somna about slow-wave sleep spindles, glymphatic detox, caffeine half-life, or personalized evening protocols.")
+                    .font(.system(size: 10))
+                    .foregroundColor(SomnaTheme.textMuted)
+                    .lineSpacing(2)
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(SomnaTheme.secondaryCard)
             
             // Messages Stream
             ScrollViewReader { proxy in

@@ -1,7 +1,7 @@
 //
 //  NeuromodulationStudioView.swift
 //  SomnaLux
-//  AVAudioEngine Waveform Generator, Oscilloscope & Vagal Breath Pacer
+//  AVAudioEngine Waveform Generator, Oscilloscope & Vagal Breath Pacer with Orientation Guides
 //
 
 import SwiftUI
@@ -48,6 +48,26 @@ public struct NeuromodulationStudioView: View {
                 }
                 .padding(20)
                 .luxuryCard(borderColor: SomnaTheme.primaryTeal.opacity(0.3))
+                
+                // Orientation Card
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "headphones")
+                        .font(.system(size: 14))
+                        .foregroundColor(SomnaTheme.primaryTeal)
+                        .padding(.top, 2)
+                    
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("How Neuromodulation Entrains Sleep (Headphones Recommended):")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                        Text("When slightly different frequencies are played into each ear (e.g. 100 Hz in left, 102.5 Hz in right), your brainstem perceives a 2.5 Hz Delta beat. This entrains cortical slow oscillations, accelerating deep sleep entry.")
+                            .font(.system(size: 11))
+                            .foregroundColor(SomnaTheme.textSecondary)
+                            .lineSpacing(2)
+                    }
+                }
+                .padding(14)
+                .luxuryCard(borderColor: SomnaTheme.primaryTeal.opacity(0.25))
                 
                 // Soundscape Synthesizer Card
                 VStack(alignment: .leading, spacing: 18) {
@@ -194,7 +214,7 @@ public struct NeuromodulationStudioView: View {
                     }
                     .frame(height: 180)
                     
-                    Text("Prolonged 8-second exhalations trigger the baroreceptor reflex, stimulating vagal acetylcholine release to slow heart rate before sleep.")
+                    Text("💡 Physiology: Inhaling for 4s, holding for 7s, and exhaling for 8s stimulates carotid sinus baroreceptors, triggering immediate acetylcholine release that slows heart rate before sleep.")
                         .font(.system(size: 11))
                         .foregroundColor(SomnaTheme.textMuted)
                         .lineSpacing(2)

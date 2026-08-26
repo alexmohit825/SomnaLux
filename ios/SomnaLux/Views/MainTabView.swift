@@ -1,7 +1,7 @@
 //
 //  MainTabView.swift
 //  SomnaLux
-//  7-Tab Container & Floating Audio Mini-Player
+//  7-Tab Container & Floating Audio Mini-Player with Orientation & Sensor Guides
 //
 
 import SwiftUI
@@ -198,54 +198,150 @@ public struct MainTabView: View {
     }
 }
 
-// Simple HealthKit Sync Tab View
+// HealthKit Telemetry & Sensor Orientation Tab View
 private struct HealthKitSyncView: View {
     @Binding var currentRecord: SleepRecord
     @StateObject private var hk = HealthKitSleepManager.shared
+    @State private var syncStatus: String = "Ready to Sync"
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 20) {
+            VStack(spacing: 24) {
+                
+                // Hero Banner
                 VStack(alignment: .leading, spacing: 10) {
-                    HStack {
+                    HStack(spacing: 6) {
                         Image(systemName: "heart.text.square.fill")
+                            .font(.system(size: 10, weight: .bold))
                             .foregroundColor(SomnaTheme.vagalRose)
-                        Text("Apple HealthKit Telemetry Sync")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
+                        Text("BACKGROUND HEALTHKIT TELEMETRY")
+                            .font(.system(size: 9, weight: .heavy, design: .monospaced))
+                            .foregroundColor(SomnaTheme.vagalRose)
                     }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(SomnaTheme.vagalRose.opacity(0.12))
+                    .cornerRadius(8)
                     
-                    Text("Stream high-precision sleep stages (Deep SWS, REM, Core), nocturnal HRV (SDNN/RMSSD), resting heart rate, and respiratory rate from your Apple Watch.")
+                    Text("Apple Watch Polysomnography Sync")
+                        .font(.system(size: 20, weight: .heavy))
+                        .foregroundColor(.white)
+                    
+                    Text("Stream high-precision sleep stages (Deep SWS, REM, Core), nocturnal HRV (SDNN/RMSSD), resting heart rate nadir, and respiratory rate directly from Apple Watch sensors.")
                         .font(.system(size: 12))
                         .foregroundColor(SomnaTheme.textSecondary)
                         .lineSpacing(3)
+                }
+                .padding(20)
+                .luxuryCard(borderColor: SomnaTheme.vagalRose.opacity(0.3))
+                
+                // Orientation & Sensor Card
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "applewatch")
+                            .foregroundColor(SomnaTheme.primaryTeal)
+                        Text("How Apple Watch Measures Sleep Architecture:")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        SensorInfoRow(
+                            sensor: "Photoplethysmography (PPG)",
+                            desc: "Green and infrared LED optical sensors capture pulse wave velocity to compute real-time Heart Rate Variability (HRV)."
+                        )
+                        SensorInfoRow(
+                            sensor: "3-Axis Accelerometer & Gyroscope",
+                            desc: "Tracks micromovements and wrist posture to detect awake arousals (WASO) versus deep somatic immobility."
+                        )
+                        SensorInfoRow(
+                            sensor: "Machine Learning Classifier",
+                            desc: "Apple's neural net translates heart rate and movement signals into Deep SWS, REM, and Core sleep stages."
+                        )
+                    }
+                }
+                .padding(20)
+                .luxuryCard()
+                
+                // Sync Action Card
+                VStack(spacing: 16) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("TELEMETRY STATUS")
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundColor(SomnaTheme.textFaint)
+                            Text(syncStatus)
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                        Circle()
+                            .fill(SomnaTheme.primaryTeal)
+                            .frame(width: 10, height: 10)
+                    }
                     
                     Button(action: {
+                        syncStatus = "Reading Apple HealthKit..."
                         Task {
                             await hk.requestAuthorization()
                             if let rec = hk.latestRecord {
                                 currentRecord = rec
+                                syncStatus = "Synced: \(rec.durationHoursString)h (\(rec.deepMinutes)m SWS)"
+                            } else {
+                                syncStatus = "Using local simulation baseline"
                             }
                         }
                     }) {
-                        HStack {
+                        HStack(spacing: 8) {
                             Image(systemName: "arrow.triangle.2.circlepath")
-                            Text("Sync Last Night from Apple Watch")
+                                .font(.system(size: 14, weight: .bold))
+                            Text("Sync Last Night's Apple Watch Telemetry")
                                 .font(.system(size: 13, weight: .bold))
                         }
                         .foregroundColor(SomnaTheme.background)
                         .frame(maxWidth: .infinity)
-                        .frame(height: 48)
+                        .frame(height: 50)
                         .background(SomnaTheme.primaryTeal)
-                        .cornerRadius(14)
+                        .cornerRadius(16)
+                        .shadow(color: SomnaTheme.primaryTeal.opacity(0.3), radius: 10)
                     }
-                    .padding(.top, 8)
+                    
+                    HStack(spacing: 6) {
+                        Image(systemName: "lock.shield.fill")
+                            .font(.system(size: 11))
+                            .foregroundColor(SomnaTheme.primaryTeal)
+                        Text("100% Private: All health computations occur on-device. No telemetry is logged or transmitted to third parties.")
+                            .font(.system(size: 10))
+                            .foregroundColor(SomnaTheme.textMuted)
+                    }
                 }
                 .padding(20)
-                .luxuryCard()
+                .luxuryCard(borderColor: SomnaTheme.primaryTeal.opacity(0.3))
+                
             }
             .padding(20)
+            .padding(.bottom, 80)
         }
         .background(SomnaTheme.background.ignoresSafeArea())
+    }
+}
+
+private struct SensorInfoRow: View {
+    let sensor: String
+    let desc: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(sensor)
+                .font(.system(size: 11, weight: .bold))
+                .foregroundColor(SomnaTheme.primaryTeal)
+            Text(desc)
+                .font(.system(size: 11))
+                .foregroundColor(SomnaTheme.textSecondary)
+                .lineSpacing(2)
+        }
+        .padding(10)
+        .background(SomnaTheme.secondaryCard)
+        .cornerRadius(10)
     }
 }

@@ -1,7 +1,7 @@
 //
 //  ScientificMechanismsView.swift
 //  SomnaLux
-//  Interactive Cellular & Molecular Sleep Science Lab
+//  Interactive Cellular & Molecular Sleep Science Lab with Orientation Guides
 //
 
 import SwiftUI
@@ -40,17 +40,37 @@ public struct ScientificMechanismsView: View {
                     .background(SomnaTheme.primaryTeal.opacity(0.12))
                     .cornerRadius(8)
                     
-                    Text("Biological Cellular Mechanisms")
+                    Text("Cellular & Molecular Sleep Science")
                         .font(.system(size: 20, weight: .heavy))
                         .foregroundColor(.white)
                     
-                    Text("Discover the exact molecular and physiological pathways through which slow-wave sleep orchestrates neuro-cleansing, cardiovascular dipping, and cellular longevity.")
+                    Text("Explore the 4 core cellular mechanisms through which slow-wave delta sleep orchestrates neuro-cleansing, cardiovascular dipping, and metabolic rejuvenation.")
                         .font(.system(size: 12))
                         .foregroundColor(SomnaTheme.textSecondary)
                         .lineSpacing(3)
                 }
                 .padding(20)
                 .luxuryCard(borderColor: SomnaTheme.primaryTeal.opacity(0.3))
+                
+                // Lab Orientation Card
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.system(size: 14))
+                        .foregroundColor(SomnaTheme.primaryTeal)
+                        .padding(.top, 2)
+                    
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("How to Use This Science Lab:")
+                            .font(.system(size: 11, weight: .bold))
+                            .foregroundColor(.white)
+                        Text("Tap each of the 4 pillars below to test interactive biological levers. Toggle astrocyte shrinkage, slide the vagal brake, or scrub the 24-hour solar clock to see how slow-wave sleep drives cellular longevity.")
+                            .font(.system(size: 11))
+                            .foregroundColor(SomnaTheme.textSecondary)
+                            .lineSpacing(2)
+                    }
+                }
+                .padding(14)
+                .luxuryCard(borderColor: SomnaTheme.primaryTeal.opacity(0.2))
                 
                 // 4 Pillars Selector Ribbon
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -117,6 +137,11 @@ private struct GlymphaticLabCard: View {
                     .foregroundColor(.white)
                 Spacer()
             }
+            
+            Text("💡 How it works: Dr. Maiken Nedergaard discovered that during deep slow-wave sleep, noradrenaline drops, causing brain glial cells to shrink by 60%. This opens wide convective pathways for cerebrospinal fluid to flush toxic proteins.")
+                .font(.system(size: 11))
+                .foregroundColor(SomnaTheme.textSecondary)
+                .lineSpacing(2)
             
             // Toggle
             HStack(spacing: 8) {
@@ -204,6 +229,11 @@ private struct AutonomicVagalLabCard: View {
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.white)
             
+            Text("💡 How it works: The vagus nerve acts as the cardiovascular brake. High vagal tone slows the heart rate and drops blood pressure by 10-20% at night, giving coronary arteries time to recover.")
+                .font(.system(size: 11))
+                .foregroundColor(SomnaTheme.textSecondary)
+                .lineSpacing(2)
+            
             VStack(spacing: 8) {
                 HStack {
                     Text("Vagal Nerve Activation:")
@@ -289,6 +319,11 @@ private struct CircadianLabCard: View {
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.white)
             
+            Text("💡 How it works: Your Suprachiasmatic Nucleus (SCN) in the hypothalamus receives 480nm blue light photons via retinal ganglion cells to synchronize peripheral clock genes (BMAL1, CLOCK).")
+                .font(.system(size: 11))
+                .foregroundColor(SomnaTheme.textSecondary)
+                .lineSpacing(2)
+            
             VStack(spacing: 8) {
                 HStack {
                     Text("Time of Day:")
@@ -308,7 +343,7 @@ private struct CircadianLabCard: View {
                 Text(phaseTitle)
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(SomnaTheme.primaryTeal)
-                Text("SCN master clock aligns peripheral cellular clock genes (BMAL1, CLOCK) via 480nm melanopsin ipRGC retinal ganglion photoreceptors.")
+                Text("SCN master clock coordinates core body temperature, melatonin secretion, and cognitive vigilance cycles.")
                     .font(.system(size: 11))
                     .foregroundColor(SomnaTheme.textMuted)
                     .lineSpacing(3)
@@ -329,6 +364,11 @@ private struct EndocrineLabCard: View {
             Text("Endocrine Secretion & Somatic Anabolism")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.white)
+            
+            Text("💡 How it works: Pituitary growth hormone and peripheral insulin sensitivity are critically tied to the delta slow-wave bursts of deep sleep.")
+                .font(.system(size: 11))
+                .foregroundColor(SomnaTheme.textSecondary)
+                .lineSpacing(2)
             
             VStack(alignment: .leading, spacing: 10) {
                 Text("• 95% of Daily Human Growth Hormone (HGH)")
