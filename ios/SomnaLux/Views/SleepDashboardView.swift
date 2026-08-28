@@ -575,6 +575,25 @@ public struct SleepDashboardView: View {
                     }
                 }
                 
+                // Footer Medical & Wellness Disclaimer
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "shield.fill")
+                            .font(.system(size: 10))
+                            .foregroundColor(SomnaTheme.textMuted)
+                        Text("WELLNESS & EDUCATIONAL DISCLAIMER")
+                            .font(.system(size: 8, weight: .bold, design: .monospaced))
+                            .foregroundColor(SomnaTheme.textMuted)
+                    }
+                    Text("SomnaLux is intended for educational, lifestyle, and general wellness optimization only. It is not a medical device and does not diagnose, treat, cure, or prevent any medical condition or sleep disorder.")
+                        .font(.system(size: 10))
+                        .foregroundColor(SomnaTheme.textFaint)
+                        .lineSpacing(2)
+                }
+                .padding(12)
+                .background(SomnaTheme.secondaryCard.opacity(0.6))
+                .cornerRadius(12)
+                
             }
             .padding(20)
             .padding(.bottom, 80) // Spacing for floating audio mini-player
@@ -770,6 +789,24 @@ public struct SleepMetricsGlossarySheet: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .luxuryCard(borderColor: col.opacity(0.3))
                         }
+                        
+                        // Medical & Wellness Disclaimer
+                        VStack(alignment: .leading, spacing: 6) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "shield.fill")
+                                    .font(.system(size: 11))
+                                    .foregroundColor(SomnaTheme.warningAmber)
+                                Text("MEDICAL & WELLNESS DISCLAIMER")
+                                    .font(.system(size: 9, weight: .bold, design: .monospaced))
+                                    .foregroundColor(SomnaTheme.warningAmber)
+                            }
+                            Text("SomnaLux is intended for educational, informational, and general wellness purposes only. It is not a medical device and is not intended to diagnose, treat, cure, or prevent any disease, medical condition, or sleep disorder. Always consult a qualified physician or healthcare professional before making changes to your health regimen.")
+                                .font(.system(size: 10))
+                                .foregroundColor(SomnaTheme.textMuted)
+                                .lineSpacing(2)
+                        }
+                        .padding(14)
+                        .luxuryCard(borderColor: SomnaTheme.warningAmber.opacity(0.25))
                     }
                     .padding(20)
                 }

@@ -14,7 +14,7 @@ public struct AICoachChatView: View {
         ChatMessage(
             id: "msg-1",
             sender: .ai,
-            text: "Hello, I am Dr. Somna, your predictive sleep and circadian medicine assistant. I have reviewed last night's session: 78 min of Slow-Wave Sleep and an average HRV of 54ms. How can I optimize your sleep architecture today?",
+            text: "Hello, I am Dr. Somna, your educational sleep science and circadian optimization coach. I have reviewed last night's session: 78 min of Slow-Wave Sleep and an average HRV of 54ms. How can I assist your wellness goals today? (Note: For educational/lifestyle guidance only, not medical diagnosis).",
             timestamp: "Just now"
         )
     ]

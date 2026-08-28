@@ -95,7 +95,8 @@ public struct OnboardingTourView: View {
             bullets: [
                 "Use the 'What-If' sliders on the dashboard to test biomarker shifts.",
                 "Wear headphones when playing binaural delta beats for stereo entrainment.",
-                "All health data stays private and encrypted on your device."
+                "All health data stays private and encrypted on your device.",
+                "Wellness Note: SomnaLux is for educational/wellness optimization only and is not a medical device."
             ]
         )
     ]
