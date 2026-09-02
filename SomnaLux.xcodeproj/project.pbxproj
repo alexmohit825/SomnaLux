@@ -18,11 +18,13 @@
 		74F44FD7AEE801CD518606D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4BEC81227659F35F2294C7 /* MainTabView.swift */; };
 		837B8709890D34EEA2AD8AC0 /* SomnaLuxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FFDDCCA98E94E463BE1EC9 /* SomnaLuxWidget.swift */; };
 		853D1927EDFED3FC50277333 /* SomnaLuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DC96B5E92A74D0AE0554A7 /* SomnaLuxApp.swift */; };
+		85E1146635D48C6F73A90F80 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996DCE06E69CDDF6848531F /* SubscriptionManager.swift */; };
 		8EA2FAA3DA61B5095F98AD02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC2E1E3181391F30BBDDF4D1 /* Assets.xcassets */; };
 		96BC5CC2E6241762DBADE6F9 /* OnboardingTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBA1C2591F4FC96EC3B9F5A /* OnboardingTourView.swift */; };
 		AE6B51520B8F8DC935278D7A /* CBTICountermeasureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0456614444857A3E600EDF /* CBTICountermeasureView.swift */; };
 		BB91D0F80586403FBE1A43A5 /* HypnogramCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F55A80D28ACD914DA61EC1 /* HypnogramCanvasView.swift */; };
 		BCDE4167823BB2D144583DEB /* AICoachChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF435E85A57E95A6EFA6FF5 /* AICoachChatView.swift */; };
+		F101916D43EA057B12263067 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12CF36C6399ABEF6B51ED3B /* PaywallView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 		81DC96B5E92A74D0AE0554A7 /* SomnaLuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomnaLuxApp.swift; sourceTree = "<group>"; };
 		9039B874002E6DCFA7165B97 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9DB1FBAD3C4D18BDA6A29FEB /* AudioSynthesizerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSynthesizerEngine.swift; sourceTree = "<group>"; };
+		A12CF36C6399ABEF6B51ED3B /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		A996DCE06E69CDDF6848531F /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		C0F55A80D28ACD914DA61EC1 /* HypnogramCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypnogramCanvasView.swift; sourceTree = "<group>"; };
 		C1F8C68001690C22560F43AA /* SleepDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepDashboardView.swift; sourceTree = "<group>"; };
 		CD7D1A5D1087B636A6A7F435 /* HealthKitSleepManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSleepManager.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			children = (
 				9DB1FBAD3C4D18BDA6A29FEB /* AudioSynthesizerEngine.swift */,
 				CD7D1A5D1087B636A6A7F435 /* HealthKitSleepManager.swift */,
+				A996DCE06E69CDDF6848531F /* SubscriptionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				3E4BEC81227659F35F2294C7 /* MainTabView.swift */,
 				553308ECDD2DB191A04ADA2D /* NeuromodulationStudioView.swift */,
 				4BBA1C2591F4FC96EC3B9F5A /* OnboardingTourView.swift */,
+				A12CF36C6399ABEF6B51ED3B /* PaywallView.swift */,
 				6671A7B8B10F2F7689215782 /* ScientificMechanismsView.swift */,
 				C1F8C68001690C22560F43AA /* SleepDashboardView.swift */,
 			);
@@ -210,11 +216,13 @@
 				74F44FD7AEE801CD518606D9 /* MainTabView.swift in Sources */,
 				2E97356F1FFEB464F407CE82 /* NeuromodulationStudioView.swift in Sources */,
 				96BC5CC2E6241762DBADE6F9 /* OnboardingTourView.swift in Sources */,
+				F101916D43EA057B12263067 /* PaywallView.swift in Sources */,
 				2E2AC2EDC02B3CC57E0B24B4 /* ScientificMechanismsView.swift in Sources */,
 				355193A9C9D73738084BE219 /* SleepDashboardView.swift in Sources */,
 				12016AC55F7048E6D57B4B78 /* SleepModels.swift in Sources */,
 				853D1927EDFED3FC50277333 /* SomnaLuxApp.swift in Sources */,
 				837B8709890D34EEA2AD8AC0 /* SomnaLuxWidget.swift in Sources */,
+				85E1146635D48C6F73A90F80 /* SubscriptionManager.swift in Sources */,
 				4195A003E7C7D14FD823AC3C /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +266,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER:-18}";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 523MJL63MC;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -341,7 +349,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER:-18}";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 523MJL63MC;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
