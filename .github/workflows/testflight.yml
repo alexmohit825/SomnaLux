@@ -74,12 +74,12 @@ jobs:
             --apiKey "$ASC_KEY_ID" \
             --apiIssuer "$ASC_ISSUER_ID"
 
-      - name: 📦 Validate iOS Build on Simulator
+      - name: 📦 Validate iOS Build
         run: |
           xcodebuild build \
             -project SomnaLux.xcodeproj \
             -scheme SomnaLux \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO
 
       - name: 🚀 Archive Release Candidate for TestFlight
