@@ -40,7 +40,7 @@ jobs:
 
       - name: 🏗️ Generate Native Xcode Project
         run: |
-          BUILD_NUM=$(( ${{ github.run_number }} + 20 ))
+          BUILD_NUM=$(( ${{ github.run_number }} + 100 ))
           echo "Generating project with build number: $BUILD_NUM"
           BUILD_NUMBER="$BUILD_NUM" xcodegen generate
 
@@ -78,7 +78,7 @@ jobs:
       - name: 🚀 Archive Release Candidate for TestFlight
         run: |
           mkdir -p build
-          BUILD_NUM=$(( ${{ github.run_number }} + 20 ))
+          BUILD_NUM=$(( ${{ github.run_number }} + 100 ))
           echo "Archiving SomnaLux target for generic iOS device (Build #$BUILD_NUM)..."
           xcodebuild archive \
             -project SomnaLux.xcodeproj \
