@@ -17,6 +17,8 @@ public struct MainTabView: View {
     
     // Audio engine observer
     @StateObject private var audio = AudioSynthesizerEngine.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
+    @State private var showPaywall: Bool = false
     
     private let tabs = [
         (0, "Telemetry", "waveform.path.ecg"),
@@ -56,6 +58,15 @@ public struct MainTabView: View {
                                 Text("Lux")
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(SomnaTheme.primaryTeal)
+                                if subscriptionManager.isProUser {
+                                    Text("PRO")
+                                        .font(.system(size: 8, weight: .black))
+                                        .foregroundColor(.black)
+                                        .padding(.horizontal, 5)
+                                        .padding(.vertical, 2)
+                                        .background(SomnaTheme.primaryTeal)
+                                        .clipShape(Capsule())
+                                }
                             }
                             Text("Predictive Sleep Suite")
                                 .font(.system(size: 9))
@@ -64,6 +75,23 @@ public struct MainTabView: View {
                     }
                     
                     Spacer()
+                    
+                    if !subscriptionManager.isProUser {
+                        Button(action: { showPaywall = true }) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "crown.fill")
+                                    .font(.system(size: 10))
+                                Text("Pro")
+                                    .font(.system(size: 10, weight: .bold))
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 5)
+                            .background(SomnaTheme.primaryTeal.opacity(0.3))
+                            .cornerRadius(10)
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(SomnaTheme.primaryTeal.opacity(0.5), lineWidth: 1))
+                        }
+                    }
                     
                     // Onboarding Tour Trigger
                     Button(action: { showOnboarding = true }) {
@@ -188,6 +216,9 @@ public struct MainTabView: View {
         }
         .sheet(isPresented: $showOnboarding) {
             OnboardingTourView(isPresented: $showOnboarding)
+        }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
         }
         .onAppear {
             if !hasSeenOnboarding {
