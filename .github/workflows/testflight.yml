@@ -39,9 +39,10 @@ jobs:
         run: brew install xcodegen
 
       - name: 🏗️ Generate Native Xcode Project
-        env:
-          BUILD_NUMBER: ${{ github.run_number }}
-        run: xcodegen generate
+        run: |
+          BUILD_NUM=$(( ${{ github.run_number }} + 20 ))
+          echo "Generating project with build number: $BUILD_NUM"
+          BUILD_NUMBER="$BUILD_NUM" xcodegen generate
 
       - name: 🔄 Sync SomnaLux.xcodeproj for Apple Xcode Cloud
         run: |
@@ -77,14 +78,15 @@ jobs:
       - name: 🚀 Archive Release Candidate for TestFlight
         run: |
           mkdir -p build
-          echo "Archiving SomnaLux target for generic iOS device (Build #${{ github.run_number }})..."
+          BUILD_NUM=$(( ${{ github.run_number }} + 20 ))
+          echo "Archiving SomnaLux target for generic iOS device (Build #$BUILD_NUM)..."
           xcodebuild archive \
             -project SomnaLux.xcodeproj \
             -scheme SomnaLux \
             -configuration Release \
             -archivePath build/SomnaLux.xcarchive \
             -destination 'generic/platform=iOS' \
-            CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUM" \
             MARKETING_VERSION="1.0" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
